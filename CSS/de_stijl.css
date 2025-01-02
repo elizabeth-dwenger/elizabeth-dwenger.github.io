@@ -1,0 +1,80 @@
+body {
+    background-color:rgb(248, 248, 248);
+    margin-left: 1cm;
+    margin-right: 1cm;
+}
+
+q {
+    color:rgb(171, 58, 48);
+    font-size: 12px;
+    font-family: sans-serif;
+    font-weight: 100;
+}
+
+p {
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    font-family: sans-serif;
+    font-style: lighter;
+    font-weight: 100;
+    letter-spacing: 0.5px
+}
+
+li {
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    font-family: sans-serif;
+    font-style: lighter;
+    font-weight: 100;
+    letter-spacing: 0.5px
+}
+
+h1 {
+    color: rgb(6, 32, 146);
+    font-size: 25px;
+    font-family: sans-serif;
+    font-style: bold;
+    font-weight: 100;
+    letter-spacing: 1.5px
+}
+
+h2 {
+    color: rgb(194, 2, 2);
+    font-size: 20px;
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: 100;
+    letter-spacing: 1.5px
+}
+
+h3 {
+    color: rgb(245, 212, 65);
+    font-size: 18px;
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: 100;
+    letter-spacing: 1.5px
+}
+
+h4 {
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: 100;
+    letter-spacing: 1.5px
+}
+
+figcaption {
+    color: rgb(98,109,128);
+    font-size: 12px;
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: 100;
+    letter-spacing: 0.5px
+}
+
+.scaleDown {
+    width: 400px;
+}
+
