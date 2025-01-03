@@ -744,28 +744,27 @@ button.modalCloseBtn {
 	transition: 0.15s ease-in-out;
 }
 
-@media (max-width:990px) {
-	.ehvtPY .navbar .main_menu {
-		display: none;
-	}
-}
 
-@media (max-width:990px) {
-	.ehvtPY .navbar .navbar_button {
-		display: none;
-	}
+@media (max-width: 990px) {
+    .ehvtPY .navbar .main_menu {
+        display: block !important; /* Ensure the menu is displayed on mobile */
+    }
+
+    .ehvtPY .navbar .main_menu .right li {
+        display: none; /* Hide all menu items by default */
+    }
+
+    .ehvtPY .navbar .main_menu .right li:nth-child(2),
+    .ehvtPY .navbar .main_menu .right li:nth-child(3),
+    .ehvtPY .navbar .main_menu .right li:nth-child(4) {
+        display: inline-block !important; 
+    }
 }
 
 .ehvtPY .navbar .reusecore-drawer__handler {
 	position: absolute;
 	top: 20px;
 	right: 20px;
-}
-
-@media (min-width:991px) {
-	.ehvtPY .navbar .reusecore-drawer__handler {
-		display: none !important;
-	}
 }
 
 .ehvtPY .email {
