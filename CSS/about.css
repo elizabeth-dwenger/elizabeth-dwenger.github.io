@@ -527,20 +527,28 @@ ul li span {
 }
 
 @media (max-width: 990px) {
+    .ehvtPY .navbar .main_menu .left {
+        display: none;
+    }
+
+    /* Ensure the menu items on the right are displayed */
     .ehvtPY .navbar .main_menu {
-        display: block !important; 
+        display: block !important; /* Override any existing `display: none` */
     }
 
     .ehvtPY .navbar .main_menu .right li {
-        display: none; /* Hide all menu items by default */
+        display: none;
     }
 
-    .ehvtPY .navbar .main_menu .right li:nth-child(2),
+    .ehvtPY .navbar .main_menu .right li:nth-child(1), /* Projects */
+    .ehvtPY .navbar .main_menu .right li:nth-child(2), /* Portraits */
     .ehvtPY .navbar .main_menu .right li:nth-child(3),
-    .ehvtPY .navbar .main_menu .right li:nth-child(4) {
-        display: inline-block !important; 
+	.ehvtPY .navbar .main_menu .right li:nth-child(4) 
+	{ 
+        display: inline-block !important;
     }
 }
+
 
 
 .ehvtPY .email {
