@@ -1895,11 +1895,6 @@
 			padding: 80px 24px !important;
 		}
 	}
-
-
-	.hoverItem .hoverItem-show {
-		display: none
-	}
 	
 	@media (min-width:800px) {
 		@media (hover:hover) {
