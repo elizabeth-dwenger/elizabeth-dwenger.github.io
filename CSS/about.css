@@ -1602,9 +1602,9 @@
 		opacity: 0.95;
 	}
 	
-	.hover-trigger:hover .hoverItem-show {
+	/* .hover-trigger:hover .hoverItem-show {
 		display: block;
-	}
+	} */
 	
 
 	.hover-trigger:after {
@@ -1616,11 +1616,11 @@
 		height: 5px;
 	}
 	
-	.hover-trigger:hover::after {
+	/* .hover-trigger:hover::after {
 		background-position: 800px;
 		-webkit-transition: background 32s linear;
 		transition: background 32s linear;
-	}
+	} */
 	
 	.hover-img-container {
 		width: 260px;
@@ -1896,7 +1896,7 @@
 		}
 	}
 	
-	@media (min-width:800px) {
+	@media (min-width:500px) {
 		@media (hover:hover) {
 			.hoverItem:active .hoverItem-show,
 			.hoverItem:focus .hoverItem-show,
