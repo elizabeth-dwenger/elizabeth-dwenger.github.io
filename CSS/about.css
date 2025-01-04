@@ -741,6 +741,12 @@ body {
 	height: 5px
 }
 
+.hover-trigger:hover::after {
+	background-position: 800px !important;
+	-webkit-transition: background 32s linear;
+	transition: background 32s linear;
+}
+
 .hover-img-container {
 	width: 260px;
 	height: 300px;
