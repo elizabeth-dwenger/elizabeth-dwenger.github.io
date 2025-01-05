@@ -1017,7 +1017,7 @@ body {
 	}
 }
 
-@media (min-width:500px) {
+/* @media (min-width:100px) {
 	@media (hover:hover) {
 
 		.hoverItem:active .hoverItem-show,
@@ -1032,6 +1032,22 @@ body {
 			transform: translateX(30%);
 			opacity: 95%
 		}
+	}
+} */
+
+@media (hover:hover) {
+
+	.hoverItem:active .hoverItem-show,
+	.hoverItem:focus .hoverItem-show,
+	.hoverItem:hover .hoverItem-show {
+		display: block;
+		right: 150px;
+		height: 300px;
+		width: auto;
+		top: 50%;
+		transform: translateY(60%);
+		transform: translateX(30%);
+		opacity: 95%
 	}
 }
 
