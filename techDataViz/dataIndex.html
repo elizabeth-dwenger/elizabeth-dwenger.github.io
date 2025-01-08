@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Is the tech industry sexist?</title>
+    <link href="normalize.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700" rel="stylesheet">
+    <link href="dataIndex.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="masthead">
+        <div class="text">
+            <h1>Is the<br>Tech Industry<br>Sexist?</h1>
+            <p>Looking into the pay gap in tech industry</p>
+        </div>
+        <div class="dollar"></div>
+    </div>
+    <div class="content">
+        <div class="sketch1-container">
+            <h2>The wage gap doesn't seem to be closing.</h2>
+            <p>The overall wage in the tech industry has steadily increased over time for both men and women. The wage gap shows no sign of narrowing within the past two decades.</p><br>
+            <div id="plot1">
+                <h3>Wage Gap in Tech Over Time</h3>
+            </div>
+            <span class="source">"Tech" here means computer and mathematical occupations. </span><br>
+            <span class="source">Source: <a href="https://www.bls.gov/cps/earnings.htm" target="_blank">Bureau of Labor Statistics</a></span>
+        </div>
+        <br><br><br>
+
+        <div class="sketch2-container">
+            <h2>What about race?</h2>
+            <p>Women in the Computer/Mathematical occupations across races and ethnicities make approximately 80 cents to a man's dollar. Gender pay gap exists throughout all races: there is no group where women's salary surpasses or is equal to the male counterpart's. The group which had the biggest gender pay gap was Hispanics, where women make 77% of men's wage. </p>
+            <div>
+                <div class="dropdown" id="women-category">
+                    <div class="dropdown-button" id="women-button">Average Women </div>
+                    <span class="triangle"> &#9660;</span>
+                    <ul class="dropdown-selection" id="selection-women">
+                        <li type="Asian" id="Female">Asian Women</li>
+                        <li type="Average" id="Female">Average Women</li>
+                        <li type="Black" id="Female">Black Women</li>
+                        <li type="Hispanic" id="Female">Hispanic Women</li>
+                        <li type="White" id="Female">White Women</li>
+                    </ul>
+                </div>
+                &nbsp make <span id="percentSalary"> </span> of what &nbsp
+                <div class="dropdown" id="male-category">
+                    <div class="dropdown-button" id="male-button"> Average Men</div>
+                    <span class="triangle"> &#9660;</span>
+                    <ul class="dropdown-selection" id="selection-male">
+                        <li type="Asian" id="Male">Asian Men</li>
+                        <li type="Average" id="Male">Average Men</li>
+                        <li type="Black" id="Male">Black Men</li>
+                        <li type="Hispanic" id="Male">Hispanic Men</li>
+                        <li type="White" id="Male">White Men</li>
+                    </ul>
+                </div>
+                &nbsp get paid.
+            </div>
+            <div id="plot2">
+            </div>
+            <span class="source">Source: <a href="https://www.bls.gov/cps/earnings.htm" target="_blank">Bureau of Labor Statistics</a></span>
+        </div>
+        <br><br><br><br>
+        <div class="sketch3-container">
+            <h2>Major Tech Companies Are Still Male-dominated.</h2>
+            <p>Women still don't get hired as much as men in tech companies. Women are even scarcer in the leadership positions.</p>
+            <div id="plot3">
+                <h3>Percentage of Women in Major Tech Companies</h3>
+                <div class="interactivity">
+                    <span>Sort by: </span>
+                    <select id="sort">
+                  <option value="female">Percentage of women</option>
+                  <option value="name">Company Name</option>
+                </select>
+                    <div class="switch-container">
+                        <span>All employees</span>
+                        <label class="switch">
+                      <input type="checkbox"  id="execSwitch">
+                      <span class="slider round"></span>
+                    </label>
+                        <span>Leadership</span>
+                    </div>
+                </div>
+                <br>
+            </div><br>
+            <span class="source">Source: each company's diversity report</span>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Made with ☕ and 💕 by <a href="https://elizabeth-dwenger.github.io/" target="_blank">Elizabeth Dwenger</a>.</p>
+    </div>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="sketch1.js"></script>
+    <script src="sketch2.js"></script>
+    <script src="sketch3.js"></script>
+</body>
+
+</html>

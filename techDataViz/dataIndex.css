@@ -1,0 +1,419 @@
+body,
+#plot1 svg text {
+    font-family: 'Work Sans', sans-serif;
+    color: #282828;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    display: inline;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.masthead {
+    text-align: center;
+    width: 100%;
+    height: 628px;
+    background-color: #073330;
+    position: relative;
+}
+
+.masthead .text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fa654b;
+    width: 100%
+}
+
+.masthead h1 {
+    font-size: 6.5em;
+    line-height: 1em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.masthead p {
+    font-size: 1.1em;
+}
+
+.dollar {
+    background-image: url("images/dollarbill_bw.png");
+    mix-blend-mode: soft-light;
+    width: 100%;
+    height: 100%;
+    background-attachment: fixed;
+    opacity: 0.8;
+    background-size: auto 628px;
+    background-position: top center;
+    background-repeat: no-repeat;
+    justify-content: center;
+}
+
+@media(min-width: 1440px) {
+    .dollar {
+        background-size: contain;
+    }
+}
+
+@media(max-width: 1024px) {
+    .dollar {
+        background-attachment: scroll;
+        background-size: cover;
+    }
+}
+
+.content {
+    max-width: 900px;
+    margin: 100px auto;
+}
+
+.content h2 {
+    font-weight: 500;
+    margin-bottom: 0.5em;
+}
+
+.content h3 {
+    font-weight: 500;
+    text-align: center;
+}
+
+.content p {
+    font-size: 1em;
+    line-height: 1.45em;
+}
+
+#plot1 .domain {
+    stroke: #ccc;
+}
+
+.sketch1-container h3 {
+    margin-bottom: 0;
+}
+
+/*plot 1 dots*/
+
+.maleDots {
+    fill: #fa654b;
+}
+
+.femaleDots {
+    fill: #007F75;
+}
+
+#plot3 {
+    margin: 0 auto;
+}
+
+#plot3 svg {
+    margin-top: -12px;
+}
+
+.valueLabel,
+.toolTip {
+    position: absolute;
+    font-size: .8em;
+    background: none repeat scroll 0 0 #fff;
+}
+
+.valueLabel {
+    padding: 5px;
+}
+
+.toolTip {
+    display: none;
+    min-width: 80px;
+    height: auto;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px;
+    line-height: 1.2em;
+    border-radius: 10px;
+}
+
+.toolTip2 {
+    position: absolute;
+    display: none;
+    min-width: 55px;
+    height: auto;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    color: #fff;
+    font-size: .8em;
+    line-height: 1.2em;
+    text-align: center;
+    border-radius: 10px;
+}
+
+#plot1 .hover {
+    position: absolute;
+    min-width: 80px;
+    height: auto;
+    background: none repeat scroll transparent;
+    padding: 10px;
+    font-size: .8em;
+    line-height: 1.2em;
+    border-radius: 10px;
+    color: #282828;
+    margin-left: -20px;
+}
+
+#plot1 .toolTip {
+    border-radius: 0px;
+    text-align: center;
+}
+
+#plot1 .gap {
+    font-size: 1.2em;
+    line-height: 1.3em;
+    font-weight: 600;
+}
+
+.sketch3-container .interactivity span,
+select {
+    font-size: 15px;
+}
+
+.source {
+    font-size: 0.8em;
+    color: #939393;
+    font-weight: 300;
+}
+
+/* The switch - the box around the slider */
+
+.switch-container {
+    float: right;
+}
+
+.switch-container span {
+    vertical-align: top;
+    transform: translateY(-15%);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 42px;
+    height: 22px;
+    margin: 0 0.2em;
+}
+
+/* Hide default HTML checkbox */
+
+.switch input {
+    display: none;
+}
+
+/* The slider */
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: #282828 solid 2px;
+    background-color: transparent;
+    -webkit-transition: .3s;
+    transition: .3s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    width: 12px;
+    height: 12px;
+    left: 3px;
+    top: 3px;
+    background-color: #282828;
+    -webkit-transition: .3s;
+    transition: .3s;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(21px);
+    -ms-transform: translateX(21px);
+    transform: translateX(21px);
+}
+
+/* Rounded sliders */
+
+.slider.round {
+    border-radius: 100px;
+}
+
+.slider.round:before {
+    border-radius: 100%;
+}
+
+#plot3 svg .bars,
+#plot1 .femaleDots,
+#plot1 .maleDots {
+    cursor: pointer;
+}
+
+#plot3 .axis path,
+line {
+    stroke: transparent;
+}
+
+#plot3 .axis {
+    font-family: 'Work Sans';
+    font-size: 15px;
+}
+
+#plot3 select {
+    -webkit-font-size: 15px;
+}
+
+.footer {
+    text-align: center;
+    background-color: #f2f2f2;
+    color: #7c7c7c;
+    min-height: 8em;
+    font-size: 0.8em;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 20px;
+}
+
+/* Plot 2 header dropdowns */
+
+.dropdown {
+    display: inline-flex;
+    position: relative;
+}
+
+.dropdown-button {
+    width: 200px;
+    height: auto;
+    /*    text-align: center;*/
+    color: #fff;
+    box-sizing: border-box;
+    padding: 12px 40px 10px 20px;
+    border-radius: 0px;
+    position: relative;
+    cursor: pointer;
+    transition: background .3s ease;
+}
+
+.dropdown-button:hover {
+    transition: background .3s ease;
+}
+
+#women-button {
+    background: #007F75;
+}
+
+#male-button {
+    background: #fa654b;
+}
+
+#women-button.dropdown-button:hover {
+    background: #0e6962;
+}
+
+#male-button.dropdown-button:hover {
+    background: #ff5f3a;
+}
+
+
+.triangle {
+    font-size: 50%;
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: #fff;
+}
+
+/*percentage label */
+
+#percentSalary {
+    color: #007F75;
+    font-weight: 650;
+    font-size: 250%;
+    font-weight: 650;
+    vertical-align: bottom;
+}
+
+.dropdown ul.active {
+    visibility: visible;
+    overflow: visible;
+    transition: all .3s ease;
+    transform: scaleY(1);
+    color: #0069d3;
+}
+
+.dropdown ul {
+    visibility: hidden;
+    overflow: hidden;
+    color: #fff;
+    transform-origin: top;
+    padding: 0;
+    list-style: none;
+    box-shadow: 0px 2px 6px 0 rgba(0, 0, 0, 0.2);
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    margin-top: 2px;
+    top: 100%;
+    min-width: 100%;
+    transition: all .3s ease;
+}
+
+.dropdown li {
+    background: #fff;
+    color: #000;
+    padding: 8px 10px 8px 15px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: background .2s ease;
+    position: relative;
+}
+
+
+.dropdown li:hover {
+    background: #dbdbdb;
+    transition: background .2s ease;
+}
+
+#women-category.dropdown li.check {
+    background: #32aca2
+}
+
+#male-category.dropdown li.check {
+    background: #fa654b;
+}
+
+.dropdown li.check:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    transform: rotate(40deg);
+    margin-bottom: auto;
+    right: 15px;
+}
+
+.dropdown li.check:before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    bottom: 0;
+    margin-top: auto;
+    transform: rotate(40deg);
+    margin-bottom: auto;
+    right: 19px;
+}
