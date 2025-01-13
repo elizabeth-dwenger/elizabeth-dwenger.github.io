@@ -78,47 +78,46 @@
                   <h5 class="react-reveal col3-start col5-end">Selected Work.</h5>
                   <div class="margin1"></div>
                   <div class="col2-start col6-end">
-                     <div class="react-reveal cards">
-                        <div style="background-image:url('https://media.geeksforgeeks.org/wp-content/uploads/20210611151042/Animation.gif')" class="card card0" id="0"></div>
-                        <div style="background-image:url('JPG/EvoAlgo/evoAlgoIndex.png')" class="card card1" id="1"></div>
-                        <div style="background-image:url('JPG/DeepFakeML/DFIndex.png')" class="card card2" id="2"></div>
-                        <div style="background-image:url(undefined)" class="card card3" id="3"></div>
-                     </div>
+                      <div class="react-reveal cards">
+                          <div class="card-container">
+                              <div class="card" id="card-main" style="background-image:url('https://media.geeksforgeeks.org/wp-content/uploads/20210611151042/Animation.gif')"></div>
+                          </div>
+                      </div>
                   </div>
                   <div class="col6-start col10-end titles">
-                     <div class="react-reveal">
-                        <div class="react-reveal">
-                           <a href="RLSnake.html" class="Link__LinkWrapper-s8z6ts-0 gqCdIK selectedTitleItem" display="inline-block">
-                              <div class="text">
-                                 <span class="mono">machine learning, TensorFlow &amp; Jupyter</span>
-                                 <h2>Reinforcement Learning Snake Game</h2>
-                              </div>
-                              <div class="SelectedItemThumb" style="background-image:url('JPG/SnakeML/snakeMLIndex.png')"></div>
-                           </a>
-                        </div>
-                     </div>
-                     <div class="react-reveal">
-                        <div class="react-reveal">
-                           <a href="CI_EvolutionaryAlgo.html" class="Link__LinkWrapper-s8z6ts-0 gqCdIK selectedTitleItem" display="inline-block">
-                              <div class="text">
-                                 <span class="mono">Computational Intelligence</span>
-                                 <h2>EA Selects NN Architecture</h2>
-                              </div>
-                              <div class="SelectedItemThumb" style="background-image:url('JPG/EvoAlgo/evoAlgoIndex.png')"></div>
-                           </a>
-                        </div>
-                     </div>
-                     <div class="react-reveal">
-                        <div class="react-reveal">
-                           <a href="https://colab.research.google.com/drive/1-jD4po5yI_OP26A7kBobSMvSZhqQVE5r?usp=sharin" class="Link__LinkWrapper-s8z6ts-0 gqCdIK selectedTitleItem" display="inline-block">
-                              <div class="text">
-                                 <span class="mono">Machine Learning</span>
-                                 <h2>DeepFake Detection</h2>
-                              </div>
-                              <div class="SelectedItemThumb" style="background-image:url('JPG/DeepFakeML/DFIndex.png')"></div>
-                           </a>
-                        </div>
-                     </div>
+                      <div class="react-reveal">
+                          <div class="react-reveal">
+                              <a href="RLSnake.html" class="Link__LinkWrapper-s8z6ts-0 gqCdIK selectedTitleItem hover-trigger" data-image="https://media.geeksforgeeks.org/wp-content/uploads/20210611151042/Animation.gif" display="inline-block">
+                                  <div class="text">
+                                      <span class="mono">machine learning, TensorFlow &amp; Jupyter</span>
+                                      <h2>Reinforcement Learning Snake Game</h2>
+                                  </div>
+                                  <div class="SelectedItemThumb" style="background-image:url('JPG/SnakeML/snakeMLIndex.png')"></div>
+                              </a>
+                          </div>
+                      </div>
+                      <div class="react-reveal">
+                          <div class="react-reveal">
+                              <a href="CI_EvolutionaryAlgo.html" class="Link__LinkWrapper-s8z6ts-0 gqCdIK selectedTitleItem hover-trigger" data-image="JPG/EvoAlgo/evoAlgoIndex2.png" display="inline-block">
+                                  <div class="text">
+                                      <span class="mono">Computational Intelligence</span>
+                                      <h2>EA Selects NN Architecture</h2>
+                                  </div>
+                                  <div class="SelectedItemThumb" style="background-image:url('JPG/EvoAlgo/evoAlgoIndex.png')"></div>
+                              </a>
+                          </div>
+                      </div>
+                      <div class="react-reveal">
+                          <div class="react-reveal">
+                              <a href="https://colab.research.google.com/drive/1-jD4po5yI_OP26A7kBobSMvSZhqQVE5r?usp=sharin" class="Link__LinkWrapper-s8z6ts-0 gqCdIK selectedTitleItem hover-trigger" data-image="JPG/DeepFakeML/DFIndex2.png" display="inline-block">
+                                  <div class="text">
+                                      <span class="mono">Machine Learning</span>
+                                      <h2>DeepFake Detection</h2>
+                                  </div>
+                                  <div class="SelectedItemThumb" style="background-image:url('JPG/DeepFakeML/DFIndex.png')"></div>
+                              </a>
+                          </div>
+                      </div>
                      <div class="react-reveal">
                         <div class="react-reveal">
                            <a href="#" class="Link__LinkWrapper-s8z6ts-0 gqCdIK selectedTitleItem" display="inline-block">
@@ -213,5 +212,13 @@
            jQuery(document).ready(function(e){function n(e,n){var i;i=e.index()+1<n?e.next("span"):e.parent(".clickBio").find("span").first(),e.add(i).toggleClass("isActive").hide(),i.velocity("fadeIn",{duration:"fast"})}e("body").removeClass("noJS"),e(".bodyWrap").velocity({opacity:0},{duration:0}).velocity("fadeIn",{duration:"slow",easing:"easeOutQuint"}),e(".clickBio").each(function(){var i=e(this).find("span"),t=i.length;i.filter(".hidden").hide().removeClass("hidden"),i.on("click",function(){n(e(this),t)})})});
          //]]>
       </script>
+      <script>
+         document.querySelectorAll('.hover-trigger').forEach(item => {
+             item.addEventListener('mouseover', () => {
+                 const cardMain = document.getElementById('card-main');
+                 cardMain.style.backgroundImage = `url(${item.getAttribute('data-image')})`;
+             });
+         });
+     </script>
    </body>
 </html>
