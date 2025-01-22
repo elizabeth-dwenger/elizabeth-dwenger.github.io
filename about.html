@@ -261,5 +261,29 @@
          </div>
       </div>
       <!-- <script id="__NEXT_DATA__" type="application/json">{"dataManager":"[]","props":{"pageProps":{}},"page":"/about","query":{},"buildId":"7KTCSJ05-EGE9l7CvNxdB","dynamicBuildId":false,"nextExport":true}</script> -->
+       <!-- Inline JavaScript -->
+       <script>
+         document.querySelectorAll('.hover-trigger-container').forEach(container => {
+            container.addEventListener('click', (event) => {
+               event.stopPropagation(); // Prevent bubbling up to document
+               const isTouched = container.classList.contains('touched');
+
+               // Remove 'touched' class from all other containers
+               document.querySelectorAll('.hover-trigger-container').forEach(el => el.classList.remove('touched'));
+
+               // Toggle the 'touched' class for this container
+               if (!isTouched) {
+                  container.classList.add('touched');
+               }
+            });
+         });
+
+         // Hide image when tapping outside
+         document.addEventListener('click', () => {
+            document.querySelectorAll('.hover-trigger-container').forEach(container => {
+               container.classList.remove('touched');
+            });
+         });
+      </script>
    </body>
 </html>

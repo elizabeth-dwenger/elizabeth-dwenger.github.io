@@ -713,6 +713,16 @@ body {
 	width: 100% !important
 }
 
+@media (max-width: 600px) {
+	.hover-trigger-container.touched .hoverItem-show {
+	   display: block;
+	}
+ 
+	.hover-trigger:hover .hoverItem-show {
+	   display: none;
+	}
+ }
+
 .hover-trigger {
 	position: relative;
 	display: inline-block;
