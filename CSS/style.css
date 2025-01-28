@@ -1125,7 +1125,7 @@ body {
 } */
 
 .cYnwSk {
-	background-color: #939393;
+	background-color: #E0A1A0; /*#F0A18D #D5A4BD*/
 	width: 1600px;
 	height: 1600px;
 	border-radius: 100%;
@@ -1503,7 +1503,7 @@ body {
 }
 
 .fmHrOg .selectedTitleItem:hover {
-	color: #a1a1a1;
+	color: #d5a4bd;
 }
 
 
