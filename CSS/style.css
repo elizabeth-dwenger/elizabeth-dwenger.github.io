@@ -1794,6 +1794,7 @@ body {
 		-webkit-flex-shrink: 0;
 		-ms-flex-negative: 0;
 		flex-shrink: 0;
+		border-radius: 10px; 
 	}
 
 	.fmHrOg h3::after {
