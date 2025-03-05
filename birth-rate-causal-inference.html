@@ -9,6 +9,7 @@
       <link href="https://fonts.googleapis.com/css?family=Overpass+Mono:400,700|Overpass:400,700&amp;display=swap" rel="stylesheet"/>
       <meta charSet="utf-8" class="next-head"/>
       <title>ELIZABETH DWENGER</title>
+      <script src="https://d3js.org/d3.v6.min.js"></script>
       <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" class="next-head"/>
    </head>
    <body>
@@ -94,6 +95,112 @@
                      <p>
                    
                     </p>
+                     <script>
+                        const margin = {top: 50, right: 50, bottom: 50, left: 60},
+                              width = 800 - margin.left - margin.right,
+                              height = 500 - margin.top - margin.bottom;
+               
+                        const svg = d3.select("svg")
+                                    .append("g")
+                                    .attr("transform", `translate(${margin.left},${margin.top})`);
+               
+                        const parseYear = d3.timeParse("%Y");
+               
+                        d3.csv("data.csv").then(data => {
+                           data.forEach(d => {
+                              d.year = parseYear(d.year);
+                              d.birth_rate = +d.birth_rate;
+                              d.policy_introduced = +d.policy_introduced;
+                           });
+               
+                           // Scales
+                           const xScale = d3.scaleTime()
+                                             .domain(d3.extent(data, d => d.year))
+                                             .range([0, width]);
+               
+                           const yScale = d3.scaleLinear()
+                                             .domain([d3.min(data, d => d.birth_rate) - 0.2, d3.max(data, d => d.birth_rate) + 0.2])
+                                             .range([height, 0]);
+               
+                           // Line generator
+                           const line = d3.line()
+                                          .x(d => xScale(d.year))
+                                          .y(d => yScale(d.birth_rate));
+               
+                           // Append line chart
+                           svg.append("path")
+                              .datum(data)
+                              .attr("class", "line")
+                              .attr("stroke", "steelblue")
+                              .attr("stroke-width", 2)
+                              .attr("fill", "none")
+                              .attr("d", line);
+               
+                           // Add dots
+                           svg.selectAll(".dot")
+                              .data(data)
+                              .enter()
+                              .append("circle")
+                              .attr("cx", d => xScale(d.year))
+                              .attr("cy", d => yScale(d.birth_rate))
+                              .attr("r", 4)
+                              .attr("fill", d => d.policy_introduced ? "red" : "steelblue")
+                              .on("mouseover", (event, d) => {
+                                 d3.select(".tooltip")
+                                    .style("visibility", "visible")
+                                    .style("left", `${event.pageX + 5}px`)
+                                    .style("top", `${event.pageY - 20}px`)
+                                    .html(`Year: ${d3.timeFormat("%Y")(d.year)}<br>Birth Rate: ${d.birth_rate}`);
+                              })
+                              .on("mouseout", () => d3.select(".tooltip").style("visibility", "hidden"));
+               
+                           // Axes
+                           svg.append("g")
+                              .attr("transform", `translate(0,${height})`)
+                              .call(d3.axisBottom(xScale));
+               
+                           svg.append("g")
+                              .call(d3.axisLeft(yScale));
+               
+                           // Labels
+                           svg.append("text")
+                              .attr("x", width / 2)
+                              .attr("y", height + 40)
+                              .attr("text-anchor", "middle")
+                              .text("Year");
+               
+                           svg.append("text")
+                              .attr("transform", "rotate(-90)")
+                              .attr("x", -height / 2)
+                              .attr("y", -40)
+                              .attr("text-anchor", "middle")
+                              .text("Birth Rate");
+               
+                           // Counterfactual Trend (simple linear projection)
+                           const prePolicyData = data.filter(d => d.policy_introduced === 0);
+                           const lastPrePolicyPoint = prePolicyData[prePolicyData.length - 1];
+               
+                           const trendLine = d3.line()
+                                                .x(d => xScale(d.year))
+                                                .y(d => yScale(lastPrePolicyPoint.birth_rate - 0.02 * (d.year.getFullYear() - lastPrePolicyPoint.year.getFullYear())));
+               
+                           svg.append("path")
+                              .datum(data.filter(d => d.year > lastPrePolicyPoint.year))
+                              .attr("class", "line")
+                              .attr("stroke", "gray")
+                              .attr("stroke-dasharray", "5,5")
+                              .attr("stroke-width", 2)
+                              .attr("fill", "none")
+                              .attr("d", trendLine);
+               
+                           svg.append("text")
+                              .attr("x", xScale(lastPrePolicyPoint.year) + 30)
+                              .attr("y", yScale(lastPrePolicyPoint.birth_rate) - 20)
+                              .attr("fill", "gray")
+                              .text("Counterfactual Projection");
+               
+                        }).catch(error => console.error("Error loading data:", error));
+                  </script>
                   </div>
                <div class="margin3"></div>
                <div class="margin2"></div>
