@@ -40,7 +40,7 @@
                      <span class="masthead-detail-content">Feb 2025</span>
                   </div>
                   <div class="masthead-detail-item">
-                    <h7>Colab</h7>
+                    <h7>GitHub</h7>
                     <span class="masthead-detail-content"><a href="https://github.com/elizabeth-dwenger/Causal-Inference-Birth-Rate" target="_blank">View GitHub</a></span>
                  </div>
                   <div class="masthead-detail-item">
@@ -60,8 +60,527 @@
                   </div>
                   <div class="col3-start col7-end">
                      <p>
-
                     </p>
+
+
+                     <div class="controls">
+                        <select id="countrySelect">
+                           <option value="country1">South Korea</option>
+                           <option value="country2">Russia</option>
+                           <option value="country3">Japan</option>
+                        </select>
+                        
+                        <button id="toggleCounterfactual">Toggle Counterfactual</button>
+                        <button id="showConfidenceIntervals">Show Confidence Intervals</button>
+                  </div>
+                  
+                  <!-- <div class="parameter-controls">
+                        <div class="slider-container">
+                           <label for="policyEffectSlider">Policy Effect Size:</label>
+                           <input type="range" id="policyEffectSlider" min="0" max="0.5" step="0.05" value="0.2">
+                           <span id="policyEffectValue">0.2</span>
+                        </div>
+                        
+                        <div class="slider-container">
+                           <label for="uncertaintySlider">Uncertainty Level:</label>
+                           <input type="range" id="uncertaintySlider" min="0.01" max="0.2" step="0.01" value="0.05">
+                           <span id="uncertaintyValue">0.05</span>
+                        </div>
+                  </div> -->
+               
+                  <svg width="800" height="500"></svg>
+                  <div class="chart-container">
+                     <svg width="900" height="20"></svg>
+                     <div class="tooltip"></div>
+               </div>
+               
+               <div class="legend">
+                     <div class="legend-item">
+                        <div class="legend-color" style="background-color: #537C44;"></div>
+                        <span>Actual Birth Rate</span>
+                     </div>
+                     <div class="legend-item">
+                        <div class="legend-color" style="background-color: #C4CD9A;"></div>
+                        <span>Policy Introduction</span>
+                     </div>
+                     <div class="legend-item">
+                        <div class="legend-color" style="background-color: #f0d775;"></div>
+                        <span>Counterfactual Projection</span>
+                     </div>
+                     <div class="legend-item" id="confidenceIntervalLegend" style="display: none;">
+                        <div class="legend-color" style="background-color: rgba(70, 130, 180, 0.2);"></div>
+                        <span>95% Confidence Interval</span>
+                     </div>
+               </div>
+               
+               <div class="impact-summary">
+                     <h3>Policy Impact Summary</h3>
+                     <p id="impactSummary">Select a country and adjust parameters to see the estimated policy impact.</p>
+               </div>
+         
+               <script>
+               // Set up the SVG dimensions
+               const svg = d3.select("svg");
+            const margin = {
+               top: 50,
+               right: 50,
+               bottom: 50,
+               left: 60
+            };
+            const width = +svg.attr("width") - margin.left - margin.right;
+            const height = +svg.attr("height") - margin.top - margin.bottom;
+            
+            const g = svg.append("g")
+               .attr("transform", `translate(${margin.left},${margin.top})`);
+            
+            const tooltip = d3.select(".tooltip");
+            
+            const parseYear = d3.timeParse("%Y");
+            
+            // Sample data for different countries
+            const allData = {
+               country1: [{
+                     year: parseYear("2018"),
+                     birth_rate: 1.65,
+                     policy_introduced: 0
+                  },
+                  {
+                     year: parseYear("2019"),
+                     birth_rate: 1.62,
+                     policy_introduced: 0
+                  },
+                  {
+                     year: parseYear("2020"),
+                     birth_rate: 1.6,
+                     policy_introduced: 0
+                  },
+                  {
+                     year: parseYear("2021"),
+                     birth_rate: 1.58,
+                     policy_introduced: 0
+                  },
+                  {
+                     year: parseYear("2022"),
+                     birth_rate: 1.55,
+                     policy_introduced: 0
+                  },
+                  {
+                     year: parseYear("2023"),
+                     birth_rate: 1.7,
+                     policy_introduced: 1
+                  },
+                  {
+                     year: parseYear("2024"),
+                     birth_rate: 1.8,
+                     policy_introduced: 1
+                  },
+                  {
+                     year: parseYear("2025"),
+                     birth_rate: 1.9,
+                     policy_introduced: 1
+                  }
+               ],
+               country2: [{
+                     year: parseYear("2018"),
+                     birth_rate: 1.9,
+                     policy_introduced: 0
+                  },
+                  {
+                     year: parseYear("2019"),
+                     birth_rate: 1.85,
+                     policy_introduced: 0
+                  },
+                  {
+                     year: parseYear("2020"),
+                     birth_rate: 1.82,
+                     policy_introduced: 0
+                  },
+                  {
+                     year: parseYear("2021"),
+                     birth_rate: 1.8,
+                     policy_introduced: 0
+                  },
+                  {
+                     year: parseYear("2022"),
+                     birth_rate: 1.95,
+                     policy_introduced: 1
+                  },
+                  {
+                     year: parseYear("2023"),
+                     birth_rate: 2.1,
+                     policy_introduced: 1
+                  },
+                  {
+                     year: parseYear("2024"),
+                     birth_rate: 2.2,
+                     policy_introduced: 1
+                  },
+                  {
+                     year: parseYear("2025"),
+                     birth_rate: 2.25,
+                     policy_introduced: 1
+                  }
+               ],
+               country3: [{
+                     year: parseYear("2018"),
+                     birth_rate: 1.4,
+                     policy_introduced: 0
+                  },
+                  {
+                     year: parseYear("2019"),
+                     birth_rate: 1.38,
+                     policy_introduced: 0
+                  },
+                  {
+                     year: parseYear("2020"),
+                     birth_rate: 1.35,
+                     policy_introduced: 0
+                  },
+                  {
+                     year: parseYear("2021"),
+                     birth_rate: 1.33,
+                     policy_introduced: 0
+                  },
+                  {
+                     year: parseYear("2022"),
+                     birth_rate: 1.31,
+                     policy_introduced: 0
+                  },
+                  {
+                     year: parseYear("2023"),
+                     birth_rate: 1.30,
+                     policy_introduced: 0
+                  },
+                  {
+                     year: parseYear("2024"),
+                     birth_rate: 1.45,
+                     policy_introduced: 1
+                  },
+                  {
+                     year: parseYear("2025"),
+                     birth_rate: 1.55,
+                     policy_introduced: 1
+                  }
+               ]
+            };
+            
+            // Default data
+            let currentData = allData.country1;
+            let showCounterfactual = true;
+            let showConfidenceIntervals = false;
+            let policyEffectSize = 0.2;
+            let uncertaintyLevel = 0.05;
+            
+            // Initial rendering
+            updateChart(currentData);
+            
+            // Country select change handler
+            d3.select("#countrySelect").on("change", function () {
+               currentData = allData[this.value];
+               updateChart(currentData);
+            });
+            
+            // Toggle counterfactual button handler
+            d3.select("#toggleCounterfactual").on("click", function () {
+               showCounterfactual = !showCounterfactual;
+               updateChart(currentData);
+            });
+            
+            // Show confidence intervals button handler
+            d3.select("#showConfidenceIntervals").on("click", function () {
+               showConfidenceIntervals = !showConfidenceIntervals;
+               d3.select("#confidenceIntervalLegend").style("display", showConfidenceIntervals ? "flex" : "none");
+               updateChart(currentData);
+            });
+            
+            // Policy effect slider handler
+            d3.select("#policyEffectSlider").on("input", function () {
+               policyEffectSize = +this.value;
+               d3.select("#policyEffectValue").text(policyEffectSize.toFixed(2));
+               generateCounterfactualData();
+               updateChart(currentData);
+            });
+            
+            // Uncertainty slider handler
+            d3.select("#uncertaintySlider").on("input", function () {
+               uncertaintyLevel = +this.value;
+               d3.select("#uncertaintyValue").text(uncertaintyLevel.toFixed(2));
+               updateChart(currentData);
+            });
+            
+            function updateChart(data) {
+               // Clear previous chart elements
+               g.selectAll("*").remove();
+            
+               // Generate counterfactual projections
+               const counterfactualData = generateCounterfactualData();
+            
+               // Update scales
+               const xScale = d3.scaleTime()
+                  .domain(d3.extent(data, d => d.year))
+                  .range([0, width]);
+            
+               const yMin = d3.min(data.concat(counterfactualData), d => d.birth_rate) - 0.3;
+               const yMax = d3.max(data.concat(counterfactualData), d => d.birth_rate) + 0.3;
+            
+               const yScale = d3.scaleLinear()
+                  .domain([yMin, yMax])
+                  .range([height, 0]);
+            
+               // Gridlines
+               g.append("g")
+                  .attr("class", "grid")
+                  .attr("transform", `translate(0,${height})`)
+                  .call(d3.axisBottom(xScale)
+                     .tickSize(-height)
+                     .tickFormat("")
+                  )
+                  .style("stroke", "#e0e0e0")
+                  .style("stroke-opacity", 0);
+            
+               g.append("g")
+                  .attr("class", "grid")
+                  .call(d3.axisLeft(yScale)
+                     .tickSize(-width)
+                     .tickFormat("")
+                  )
+                  .style("stroke", "#e0e0e0")
+                  .style("stroke-opacity", 0.1);
+            
+               // Axes
+               g.append("g")
+                  .attr("transform", `translate(0,${height})`)
+                  .call(d3.axisBottom(xScale))
+                  .style("font-size", "12px");
+            
+               g.append("g")
+                  .call(d3.axisLeft(yScale))
+                  .style("font-size", "12px");
+            
+               // Line generators
+               const line = d3.line()
+                  .x(d => xScale(d.year))
+                  .y(d => yScale(d.birth_rate))
+                  .curve(d3.curveMonotoneX);
+            
+               const counterfactualLine = d3.line()
+                  .x(d => xScale(d.year))
+                  .y(d => yScale(d.counterfactual))
+                  .curve(d3.curveMonotoneX);
+            
+               // Policy marker line
+               const policyYear = data.find(d => d.policy_introduced === 1)?.year;
+               if (policyYear) {
+                  g.append("line")
+                     .attr("class", "policy-marker")
+                     .attr("x1", xScale(policyYear))
+                     .attr("x2", xScale(policyYear))
+                     .attr("y1", 0)
+                     .attr("y2", height)
+                     .attr("stroke", "#C4CD9A");
+            
+                  g.append("text")
+                     .attr("x", xScale(policyYear) + 5)
+                     .attr("y", 15)
+                     .attr("fill", "#A8876B")
+                     .style("font-size", "12px")
+                     .style("font-weight", "bold")
+                     .text("Policy Introduced");
+               }
+            
+               // Confidence intervals
+               if (showConfidenceIntervals && showCounterfactual) {
+                  const areaGenerator = d3.area()
+                     .x(d => xScale(d.year))
+                     .y0(d => yScale(d.counterfactual - d.confidence))
+                     .y1(d => yScale(d.counterfactual + d.confidence))
+                     .curve(d3.curveMonotoneX);
+            
+                  g.append("path")
+                     .datum(counterfactualData)
+                     .attr("fill", "#D4DFE9")
+                     .attr("d", areaGenerator);
+               }
+            
+               // Counterfactual line
+               if (showCounterfactual) {
+                  g.append("path")
+                     .datum(counterfactualData)
+                     .attr("class", "counterfactual-line")
+                     .attr("stroke", "#f0d775")
+                     .attr("stroke-dasharray", "5,5")
+                     .attr("stroke-width", 2)
+                     .attr("fill", "none")
+                     .attr("d", counterfactualLine);
+               }
+            
+               // Actual data line
+               g.append("path")
+                  .datum(data)
+                  .attr("class", "line")
+                  .attr("stroke", "#537C44")
+                  .attr("stroke-width", 3)
+                  .attr("fill", "none")
+                  .attr("d", line);
+            
+               // Add dots for data points
+               g.selectAll(".dot")
+                  .data(data)
+                  .enter()
+                  .append("circle")
+                  .attr("class", "dot")
+                  .attr("cx", d => xScale(d.year))
+                  .attr("cy", d => yScale(d.birth_rate))
+                  .attr("r", 5)
+                  .attr("fill", d => d.policy_introduced ? "#C4CD9A" : "#537C44")
+                  .on("mouseover", function (event, d) {
+                     // Enlarge the dot
+                     d3.select(this)
+                        .transition()
+                        .duration(200)
+                        .attr("r", 8);
+            
+                     // Show tooltip
+                     tooltip.style("opacity", 1)
+                        .style("left", (event.pageX + 10) + "px")
+                        .style("top", (event.pageY - 30) + "px")
+                        .html(`
+                                       <strong>Year:</strong> ${d3.timeFormat("%Y")(d.year)}<br>
+                                       <strong>Birth Rate:</strong> ${d.birth_rate.toFixed(2)}<br>
+                                       <strong>Status:</strong> ${d.policy_introduced ? "After Policy" : "Before Policy"}
+                                       ${showCounterfactual && d.policy_introduced ? 
+                                          `<br><strong>Counterfactual:</strong> ${counterfactualData.find(cf => cf.year.getTime() === d.year.getTime())?.counterfactual.toFixed(2) || "N/A"}` : 
+                                          ""}
+                                    `);
+                  })
+                  .on("mouseout", function () {
+                     // Restore dot size
+                     d3.select(this)
+                        .transition()
+                        .duration(200)
+                        .attr("r", 5);
+            
+                     // Hide tooltip
+                     tooltip.style("opacity", 0);
+                  });
+            
+               // Labels
+               g.append("text")
+                  .attr("x", width / 2)
+                  .attr("y", height + 40)
+                  .attr("text-anchor", "middle")
+                  .style("font-size", "14px")
+                  .text("Year");
+            
+               g.append("text")
+                  .attr("transform", "rotate(-90)")
+                  .attr("x", -height / 2)
+                  .attr("y", -40)
+                  .attr("text-anchor", "middle")
+                  .style("font-size", "14px")
+                  .text("Birth Rate (Children per Woman)");
+            
+               // Update the impact summary
+               updateImpactSummary(data, counterfactualData);
+            }
+            
+            function generateCounterfactualData() {
+               // Find the first policy introduction year
+               const policyYearIndex = currentData.findIndex(d => d.policy_introduced === 1);
+               if (policyYearIndex === -1) return [];
+            
+               // Get pre-policy data
+               const prePolicyData = currentData.slice(0, policyYearIndex);
+            
+               // Create counterfactual data
+               const counterfactualData = currentData.map((d, i) => {
+                  const obj = {
+                     ...d
+                  };
+            
+                  if (i < policyYearIndex) {
+                     // For pre-policy years, counterfactual equals actual
+                     obj.counterfactual = d.birth_rate;
+                     obj.confidence = uncertaintyLevel * 0.5; // Lower uncertainty for known data
+                  } else {
+                     // For post-policy years, calculate counterfactual trend
+                     // Simple linear model based on pre-policy trend
+                     if (prePolicyData.length >= 2) {
+                        const firstYear = prePolicyData[0];
+                        const lastYear = prePolicyData[prePolicyData.length - 1];
+                        const yearsDiff = lastYear.year.getFullYear() - firstYear.year.getFullYear();
+                        const rateDiff = lastYear.birth_rate - firstYear.birth_rate;
+            
+                        // Calculate average yearly change
+                        const yearlyChange = yearsDiff > 0 ? rateDiff / yearsDiff : 0;
+            
+                        // Calculate years since policy
+                        const yearsSincePolicy = d.year.getFullYear() - lastYear.year.getFullYear();
+            
+                        // Calculate counterfactual without policy effect
+                        obj.counterfactual = lastYear.birth_rate + (yearlyChange * yearsSincePolicy);
+            
+                        // Add increasing uncertainty over time
+                        obj.confidence = uncertaintyLevel * (1 + yearsSincePolicy * 0.5);
+                     } else {
+                        // If not enough pre-policy data, use last known value
+                        obj.counterfactual = prePolicyData.length > 0 ?
+                           prePolicyData[prePolicyData.length - 1].birth_rate :
+                           d.birth_rate - policyEffectSize;
+                        obj.confidence = uncertaintyLevel * 2;
+                     }
+                  }
+            
+                  return obj;
+               });
+            
+               return counterfactualData;
+            }
+            
+            function updateImpactSummary(data, counterfactualData) {
+               // Find data after policy introduction
+               const postPolicyData = data.filter(d => d.policy_introduced === 1);
+               if (postPolicyData.length === 0) {
+                  d3.select("#impactSummary").html("No policy implementation data available.");
+                  return;
+               }
+            
+               // Calculate average difference between actual and counterfactual
+               let totalDiff = 0;
+               let count = 0;
+            
+               postPolicyData.forEach(d => {
+                  const counterfactual = counterfactualData.find(cf => cf.year.getTime() === d.year.getTime());
+                  if (counterfactual) {
+                     totalDiff += (d.birth_rate - counterfactual.counterfactual);
+                     count++;
+                  }
+               });
+            
+               const avgDiff = count > 0 ? totalDiff / count : 0;
+               const percentIncrease = count > 0 ?
+                  (avgDiff / counterfactualData.find(cf => cf.year.getTime() === postPolicyData[0].year.getTime()).counterfactual) * 100 :
+                  0;
+            
+               // Get the most recent data point
+               const latest = postPolicyData[postPolicyData.length - 1];
+               const latestCounterfactual = counterfactualData.find(cf => cf.year.getTime() === latest.year.getTime());
+               const latestDiff = latestCounterfactual ? (latest.birth_rate - latestCounterfactual.counterfactual) : 0;
+            
+               // Update the summary
+               d3.select("#impactSummary").html(`
+                           <p><strong>Average Birth Rate Increase:</strong> ${avgDiff.toFixed(2)} children per woman (${percentIncrease.toFixed(1)}% increase)</p>
+                           <p><strong>Latest Year Impact (${d3.timeFormat("%Y")(latest.year)}):</strong> ${latestDiff.toFixed(2)} children per woman above projected trend</p>
+                           <p><strong>Conclusion:</strong> The birth rate policy appears to have ${
+                              avgDiff > 0.1 ? "a significant positive impact" : 
+                              avgDiff > 0 ? "a modest positive impact" : 
+                              "no detectable impact"
+                           } on fertility rates.</p>
+                        `);
+            } </script>
+
+
+
                   </div>
                  <div class="margin1"></div>
                  <div class="col2-start col3-end"><span class="sectionTitle">01. Methodology
@@ -95,112 +614,6 @@
                      <p>
                    
                     </p>
-                     <script>
-                        const margin = {top: 50, right: 50, bottom: 50, left: 60},
-                              width = 800 - margin.left - margin.right,
-                              height = 500 - margin.top - margin.bottom;
-               
-                        const svg = d3.select("svg")
-                                    .append("g")
-                                    .attr("transform", `translate(${margin.left},${margin.top})`);
-               
-                        const parseYear = d3.timeParse("%Y");
-               
-                        d3.csv("data.csv").then(data => {
-                           data.forEach(d => {
-                              d.year = parseYear(d.year);
-                              d.birth_rate = +d.birth_rate;
-                              d.policy_introduced = +d.policy_introduced;
-                           });
-               
-                           // Scales
-                           const xScale = d3.scaleTime()
-                                             .domain(d3.extent(data, d => d.year))
-                                             .range([0, width]);
-               
-                           const yScale = d3.scaleLinear()
-                                             .domain([d3.min(data, d => d.birth_rate) - 0.2, d3.max(data, d => d.birth_rate) + 0.2])
-                                             .range([height, 0]);
-               
-                           // Line generator
-                           const line = d3.line()
-                                          .x(d => xScale(d.year))
-                                          .y(d => yScale(d.birth_rate));
-               
-                           // Append line chart
-                           svg.append("path")
-                              .datum(data)
-                              .attr("class", "line")
-                              .attr("stroke", "steelblue")
-                              .attr("stroke-width", 2)
-                              .attr("fill", "none")
-                              .attr("d", line);
-               
-                           // Add dots
-                           svg.selectAll(".dot")
-                              .data(data)
-                              .enter()
-                              .append("circle")
-                              .attr("cx", d => xScale(d.year))
-                              .attr("cy", d => yScale(d.birth_rate))
-                              .attr("r", 4)
-                              .attr("fill", d => d.policy_introduced ? "red" : "steelblue")
-                              .on("mouseover", (event, d) => {
-                                 d3.select(".tooltip")
-                                    .style("visibility", "visible")
-                                    .style("left", `${event.pageX + 5}px`)
-                                    .style("top", `${event.pageY - 20}px`)
-                                    .html(`Year: ${d3.timeFormat("%Y")(d.year)}<br>Birth Rate: ${d.birth_rate}`);
-                              })
-                              .on("mouseout", () => d3.select(".tooltip").style("visibility", "hidden"));
-               
-                           // Axes
-                           svg.append("g")
-                              .attr("transform", `translate(0,${height})`)
-                              .call(d3.axisBottom(xScale));
-               
-                           svg.append("g")
-                              .call(d3.axisLeft(yScale));
-               
-                           // Labels
-                           svg.append("text")
-                              .attr("x", width / 2)
-                              .attr("y", height + 40)
-                              .attr("text-anchor", "middle")
-                              .text("Year");
-               
-                           svg.append("text")
-                              .attr("transform", "rotate(-90)")
-                              .attr("x", -height / 2)
-                              .attr("y", -40)
-                              .attr("text-anchor", "middle")
-                              .text("Birth Rate");
-               
-                           // Counterfactual Trend (simple linear projection)
-                           const prePolicyData = data.filter(d => d.policy_introduced === 0);
-                           const lastPrePolicyPoint = prePolicyData[prePolicyData.length - 1];
-               
-                           const trendLine = d3.line()
-                                                .x(d => xScale(d.year))
-                                                .y(d => yScale(lastPrePolicyPoint.birth_rate - 0.02 * (d.year.getFullYear() - lastPrePolicyPoint.year.getFullYear())));
-               
-                           svg.append("path")
-                              .datum(data.filter(d => d.year > lastPrePolicyPoint.year))
-                              .attr("class", "line")
-                              .attr("stroke", "gray")
-                              .attr("stroke-dasharray", "5,5")
-                              .attr("stroke-width", 2)
-                              .attr("fill", "none")
-                              .attr("d", trendLine);
-               
-                           svg.append("text")
-                              .attr("x", xScale(lastPrePolicyPoint.year) + 30)
-                              .attr("y", yScale(lastPrePolicyPoint.birth_rate) - 20)
-                              .attr("fill", "gray")
-                              .text("Counterfactual Projection");
-               
-                        }).catch(error => console.error("Error loading data:", error));
-                  </script>
                   </div>
                <div class="margin3"></div>
                <div class="margin2"></div>
