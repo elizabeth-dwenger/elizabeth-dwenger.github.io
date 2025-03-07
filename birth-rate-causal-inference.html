@@ -37,7 +37,7 @@
                <div class="react-reveal left">
                   <div class="masthead-detail-item">
                      <h7>Timeframe</h7>
-                     <span class="masthead-detail-content">Feb 2025</span>
+                     <span class="masthead-detail-content">Jan - Mar 2025</span>
                   </div>
                   <div class="masthead-detail-item">
                     <h7>GitHub</h7>
@@ -59,9 +59,6 @@
                      <h3>Causal Inference Birth Rate.</h3>
                   </div>
                   <div class="col3-start col7-end">
-                     <p>
-                    </p>
-
 
                      <div class="controls">
                         <select id="countrySelect">
@@ -569,6 +566,7 @@
             
                // Update the summary
                d3.select("#impactSummary").html(`
+                           <p>*This section changes as a different country is selected on the graph.*</p>
                            <p><strong>Average Birth Rate Increase:</strong> ${avgDiff.toFixed(2)} children per woman (${percentIncrease.toFixed(1)}% increase)</p>
                            <p><strong>Latest Year Impact (${d3.timeFormat("%Y")(latest.year)}):</strong> ${latestDiff.toFixed(2)} children per woman above projected trend</p>
                            <p><strong>Conclusion:</strong> The birth rate policy appears to have ${
@@ -579,41 +577,82 @@
                         `);
             } </script>
 
-
-
                   </div>
                  <div class="margin1"></div>
+                 <div class="col2-start col3-end"><span class="sectionTitle">01. Overview
+               </span></div>
+                <div class="col3-start col7-end">
+                   <h3>Introduction.</h3>
+                </div>
+                <div class="col3-start col7-end">
+                     <p>Birthrates in developed countries are plummeting, with most nations now falling below the population replacement rate (<a href="https://en.wikipedia.org/wiki/List_of_countries_by_total_fertility_rate#Country_ranking_by_international_organizations">source</a>). This unprecedented demographic shift threatens to reshape economies, as shrinking workforces struggle to support aging populations. Without a major economic transformation, the next generations may face declining living standards and a labor shortage too severe to sustain long-term growth. </p>
+                  </div>
+                 <div class="col3-start col4-end">
+                  <h5>Discussion</h5>
+               </div>
+               <div class="col4-start col7-end">
+                  <p>My friend and I had a lengthy discussion where we explored potential solutions, particularly the role of artificial intelligence in mitigating workforce shortages. We shared the assumption that <strong>reversing the declining birthrate trend is extremely difficult, if not impossible</strong>.</p>
+                  <p>Some key points from our discussion:</p>
+                  <span>
+                      - Once a country reaches a certain level of development, having children may become a lower priority.<br>
+                      - Japan serves as a strong case study since it resists immigration and faces a rapidly aging population.<br>
+                      - Even in countries that welcome immigration, if global birthrate declines persist, there may eventually be too few people to fill workforce gaps—even through immigration.<br>
+                      - The trend appears to be universal, cutting across cultures and persisting despite government incentives.<br>
+                   </span>
+                </div>
+                <div class="col3-start col4-end">
+                  <h5>The Central Question</h5>
+               </div>
+               <div class="col4-start col7-end">
+                  <p>Given that the articles argue governmental aid and incentives have had limited success, I wanted to investigate from a causal inference perspective:</p>
+                  <strong>Are these incentives actually making a difference?</strong>
+                </div>
+              <div class="margin1"></div>
+
                  <div class="col2-start col3-end"><span class="sectionTitle">01. Methodology
                 </span></div>
                  <div class="col3-start col7-end">
                     <h3>Methodology.</h3>
                  </div>
                  <div class="col3-start col4-end">
-                    <h5>Dataset Preparation:</h5>
+                    <h5>Methods Used:</h5>
                  </div>
                  <div class="col4-start col7-end">
-                   <span>
-                    
-                   </span>
-               </div>
-               <div class="margin1"></div>
-                 <div class="col3-start col4-end">
-                    <h5>Model Architectures:</h5>
-                 </div>
-                 <div class="col4-start col7-end">
-                   <span>
-
-                   </span>
-               </div>
-               <div class="margin1"></div>
-               <div class="col2-start col3-end"><span class="sectionTitle">02. Results</span></div>
+                     <span>
+                        - Difference-in-Differences (DiD)<br>
+                        - Synthetic Control Method<br>
+                        - Doubly Robust Estimation<br>
+                        - Causal Graph Visualizations (DAGs)<br>
+                     </span>
+                  </div>
                   <div class="col3-start col7-end">
-                     <h3>Results.</h3>
+                  <a href="https://github.com/elizabeth-dwenger/Causal-Inference-Birth-Rate/blob/main/Birth-Rate-Incentives.ipynb" target="_blank">
+                     <img src="JPG/CI/fertility_rates_transparent.png" alt="Fertility Rates">
+                   </a>
+                  </div>
+               <div class="margin1"></div>
+               <div class="col2-start col3-end"><span class="sectionTitle">02. Sources</span></div>
+                  <div class="col3-start col7-end">
+                     <h3>Sources.</h3>
                   </div>
                   <div class="col3-start col7-end">
                      <p>
-                   
-                    </p>
+                        <a href="https://www.ft.com/content/2f4e8e43-ab36-4703-b168-0ab56a0a32bc">(1) The baby gap: why governments can't pay their way to higher birth rates</a>
+                        <br>
+                        <a href="https://www.ft.com/content/19cea1e0-4b8f-4623-bf6b-fe8af2acd3e5">(2) Falling birth rates raise prospect of sharp decline in living standards</a>
+                        <br>
+                        <a href="https://www.ipss.go.jp/webj-ad/webjournal.files/population/2006_3/suzuki.pdf">(3) Fertility Decline and Policy Development in Japan</a>
+                        <br>
+                        <a href="https://www.jstor.org/stable/41110761">(4) Japan's Changing Fertility Mechanisms and Its Policy Responses</a>
+                        <br>
+                        <a href="https://www.ipss.go.jp/webj-ad/webjournal.files/population/2009_4/Web%20Journal_02.pdf">(5) Fertility Decline and Governmental Interventions in Eastern Asian Advanced Countries</a>
+                        <br>
+                        <a href="https://sfr.gov.ru/en/matcap/">(6) Maternity (Family) Capital - Russia</a>
+                        <br>
+                        <a href="https://docs.iza.org/dp7705.pdf">(7) Assessing the Impact of the Maternity Capital Policy in Russia Using a Dynamic Model of Fertility and Employment</a>
+                        <br>
+                        <a href="https://www.sciencedirect.com/science/article/abs/pii/S104900782100124X">(8) Childbearing and the distribution of the reservation price of fertility: The case of the Korean baby bonus program</a>
+                     </p>
                   </div>
                <div class="margin3"></div>
                <div class="margin2"></div>
