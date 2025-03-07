@@ -59,6 +59,12 @@
                      <h3>Causal Inference Birth Rate.</h3>
                   </div>
                   <div class="col3-start col7-end">
+                     <p>
+                     <strong>South Korea 2001:</strong> Pronatalist cash transfer policy <br>
+                     <strong>Russia 2006:</strong> "Maternal capital" program <br>
+                     <strong>Japan 1994:</strong> Angel Plan <br>
+                     </p>
+                     <br>
 
                      <div class="controls">
                         <select id="countrySelect">
@@ -136,12 +142,14 @@
             
             // Sample data for different countries
             const allData = {
-               country1: [{
-                     year: parseYear("1997"),
-                     birth_rate: 1.54,
-                     policy_introduced: 0
-                  },
-                  {
+               country1: {
+               name: "South Korea",
+               data: [{
+                  year: parseYear("1997"),
+                  birth_rate: 1.54,
+                  policy_introduced: 0
+               },
+               {
                      year: parseYear("1998"),
                      birth_rate: 1.46,
                      policy_introduced: 0
@@ -176,13 +184,16 @@
                      birth_rate: 1.16,
                      policy_introduced: 1
                   }
-               ],
-               country2: [{
-                     year: parseYear("2001"),
-                     birth_rate: 1.22,
-                     policy_introduced: 0
-                  },
-                  {
+               ]
+            },
+            country2: {
+            name: "Russia",
+            data: [{
+               year: parseYear("2001"),
+               birth_rate: 1.22,
+               policy_introduced: 0
+            },
+            {
                      year: parseYear("2002"),
                      birth_rate: 1.29,
                      policy_introduced: 0
@@ -217,13 +228,16 @@
                      birth_rate: 1.50,
                      policy_introduced: 1
                   }
-               ],
-               country3: [{
-                     year: parseYear("1990"),
-                     birth_rate: 1.54,
-                     policy_introduced: 0
-                  },
-                  {
+            ]
+         },
+         country3: {
+            name: "Japan",
+            data: [{
+               year: parseYear("1990"),
+               birth_rate: 1.54,
+               policy_introduced: 0
+            },
+            {
                      year: parseYear("1991"),
                      birth_rate: 1.53,
                      policy_introduced: 0
@@ -258,11 +272,14 @@
                      birth_rate: 1.39,
                      policy_introduced: 1
                   }
-               ]
-            };
-            
+            ]
+         }
+      };
+
             // Default data
-            let currentData = allData.country1;
+            // let currentData = allData.country1.data;
+            let currentCountry = allData.country1.name;
+            let currentData = allData.country1.data;
             let showCounterfactual = true;
             let showConfidenceIntervals = false;
             let policyEffectSize = 0.2;
@@ -273,7 +290,10 @@
             
             // Country select change handler
             d3.select("#countrySelect").on("change", function () {
-               currentData = allData[this.value];
+               const selectedCountry = this.value;
+               // currentData = allData[this.value];
+               currentData = allData[selectedCountry].data;
+               currentCountry = allData[selectedCountry].name;
                updateChart(currentData);
             });
             
@@ -538,7 +558,7 @@
                // Find data after policy introduction
                const postPolicyData = data.filter(d => d.policy_introduced === 1);
                if (postPolicyData.length === 0) {
-                  d3.select("#impactSummary").html("No policy implementation data available.");
+                  d3.select("#impactSummary").html("No policy implementation data available for " + currentCountry + ".");
                   return;
                }
             
@@ -566,8 +586,8 @@
             
                // Update the summary
                d3.select("#impactSummary").html(`
-                           <p>*This section changes as a different country is selected on the graph.*</p>
-                           <p><strong>Average Birth Rate Increase:</strong> ${avgDiff.toFixed(2)} children per woman (${percentIncrease.toFixed(1)}% increase)</p>
+                           <p>This section changes as a different country is selected on the graph!</p>
+                           <p><strong>Average Birth Rate Increase in ${currentCountry}:</strong> ${avgDiff.toFixed(2)} children per woman (${percentIncrease.toFixed(1)}% increase)</p>
                            <p><strong>Latest Year Impact (${d3.timeFormat("%Y")(latest.year)}):</strong> ${latestDiff.toFixed(2)} children per woman above projected trend</p>
                            <p><strong>Conclusion:</strong> The birth rate policy appears to have ${
                               avgDiff > 0.1 ? "a significant positive impact" : 
@@ -585,18 +605,18 @@
                    <h3>Introduction.</h3>
                 </div>
                 <div class="col3-start col7-end">
-                     <p>Birthrates in developed countries are plummeting, with most nations now falling below the population replacement rate (<a href="https://en.wikipedia.org/wiki/List_of_countries_by_total_fertility_rate#Country_ranking_by_international_organizations">source</a>). This unprecedented demographic shift threatens to reshape economies, as shrinking workforces struggle to support aging populations. Without a major economic transformation, the next generations may face declining living standards and a labor shortage too severe to sustain long-term growth. </p>
+                     <p>Birth rates in developed countries are plummeting, with most nations now falling below the population replacement rate (<a href="https://en.wikipedia.org/wiki/List_of_countries_by_total_fertility_rate#Country_ranking_by_international_organizations">source</a>). This unprecedented demographic shift threatens to reshape economies, as shrinking workforces struggle to support aging populations. Without a major economic transformation, the next generations may face declining living standards and a labor shortage too severe to sustain long-term growth. </p>
                   </div>
                  <div class="col3-start col4-end">
                   <h5>Discussion</h5>
                </div>
                <div class="col4-start col7-end">
-                  <p>My friend and I had a lengthy discussion where we explored potential solutions, particularly the role of artificial intelligence in mitigating workforce shortages. We shared the assumption that <strong>reversing the declining birthrate trend is extremely difficult, if not impossible</strong>.</p>
+                  <p>My friend and I had a lengthy discussion where we explored potential solutions, particularly the role of artificial intelligence in mitigating workforce shortages. We shared the assumption that <strong>reversing the declining birth rate trend is extremely difficult, if not impossible</strong>.</p>
                   <p>Some key points from our discussion:</p>
                   <span>
                       - Once a country reaches a certain level of development, having children may become a lower priority.<br>
                       - Japan serves as a strong case study since it resists immigration and faces a rapidly aging population.<br>
-                      - Even in countries that welcome immigration, if global birthrate declines persist, there may eventually be too few people to fill workforce gaps—even through immigration.<br>
+                      - Even in countries that welcome immigration, if global birth rate declines persist, there may eventually be too few people to fill workforce gaps—even through immigration.<br>
                       - The trend appears to be universal, cutting across cultures and persisting despite government incentives.<br>
                    </span>
                 </div>
