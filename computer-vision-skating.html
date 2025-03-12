@@ -36,17 +36,18 @@
                <div class="react-reveal left">
                   <div class="masthead-detail-item">
                      <h7>Timeframe</h7>
-                     <span class="masthead-detail-content">Feb 2025</span>
+                     <span class="masthead-detail-content">Feb - Mar 2025</span>
                   </div>
                   <div class="masthead-detail-item">
                     <h7>Colab</h7>
-                    <span class="masthead-detail-content"><a href="https://github.com/elizabeth-dwenger/Causal-Inference-Birth-Rate" target="_blank">View GitHub</a></span>
+                    <span class="masthead-detail-content"><a href="https://github.com/elizabeth-dwenger/Computer-Vision-FS" target="_blank">View GitHub</a></span>
                  </div>
                   <div class="masthead-detail-item">
                      <h7>tools</h7>
                      <span class="masthead-detail-content">Python</span>
-                     <span class="masthead-detail-content">cvxpy</span>
-                     <span class="masthead-detail-content">scikit-learn</span>
+                     <span class="masthead-detail-content">CV2</span>
+                     <span class="masthead-detail-content">TensorFlow</span>
+                     <span class="masthead-detail-content">NumPy</span>
                   </div>
                </div>
                <div class="react-reveal heroImg" style="background-size:auto 100%;"></div>
@@ -55,11 +56,14 @@
                <div class="wrap">
                   <div class="col2-start col3-end"><span class="sectionTitle">00. Overview</span></div>
                   <div class="col3-start col7-end">
-                     <h3>Causal Inference Birth Rate.</h3>
+                     <h3>Computer Vision for Figure Skating.</h3>
                   </div>
                   <div class="col3-start col7-end">
                      <p>
-
+                        Figure skating presents one of the most challenging environments for computer vision and pose estimation systems. The combination of high-speed movements, extreme body positions, rotational blur, and clothing variations makes it exceptionally difficult for current state-of-the-art pose detection systems to accurately track skaters' movements.
+                     </p>
+                     <p>
+                        My project investigated how current pose detection technologies perform when applied to figure skating, with particular attention to complex elements like spins and jumps. I found that while systems like OpenPose, VideoPose3D, and wrnch.ai perform admirably in many contexts, they struggle significantly with the elastic poses unique to figure skating, such as the Biellmann spin where skaters pull their free leg behind and over their head.
                     </p>
                   </div>
                  <div class="margin1"></div>
@@ -68,33 +72,88 @@
                  <div class="col3-start col7-end">
                     <h3>Methodology.</h3>
                  </div>
+                 <div class="col3-start col7-end">
+                     <p>My investigation employed a systematic approach to evaluate the performance of leading pose detection systems:</p>
+                 </div>
                  <div class="col3-start col4-end">
-                    <h5>Dataset Preparation:</h5>
+                    <h5>Data Collection:</h5>
                  </div>
                  <div class="col4-start col7-end">
                    <span>
-                    
+                     I compiled a diverse dataset of figure skating videos featuring various elements, with special emphasis on spins, jumps, and extreme poses. Videos were sourced from competition footage and training sessions (even my own training footage :), ensuring variety in camera angles, lighting conditions, and skater characteristics.
                    </span>
                </div>
                <div class="margin1"></div>
                  <div class="col3-start col4-end">
-                    <h5>Model Architectures:</h5>
+                    <h5>System Implementation:</h5>
                  </div>
                  <div class="col4-start col7-end">
                    <span>
-
+                     I implemented three leading pose detection systems:
+                  <p>
+                     - OpenPose: A real-time multi-person detection system using Part Affinity Fields
+                  </p><p>
+                     - VideoPose3D: A system that estimates 3D human pose from 2D keypoint inputs
+                  </p><p>
+                     - wrnch.ai: A commercial motion capture and body tracking solution
+                  </p>
                    </span>
                </div>
                <div class="margin1"></div>
+               <div class="col3-start col4-end">
+                  <h5>Custom Tracking Framework:</h5>
+               </div>
+               <div class="col4-start col7-end">
+                 <span>
+                  I developed a Python-based framework (using TensorFlow and OpenCV) to process video frames, apply the pose detection systems, and visualize the results through 2D overlays and 3D skeletal reconstructions.
+                 </span>
+             </div>
+             <div class="margin1"></div>
+             <div class="col3-start col4-end">
+               <h5>Performance Evaluation:</h5>
+            </div>
+            <div class="col4-start col7-end">
+              <span>
+               I analyzed detection accuracy by comparing system outputs against manually annotated ground truth poses, with particular focus on extreme positions during spins and jumps.
+              </span>
+          </div>
+          <div class="margin1"></div>
                <div class="col2-start col3-end"><span class="sectionTitle">02. Results</span></div>
                   <div class="col3-start col7-end">
                      <h3>Results.</h3>
                   </div>
                   <div class="col3-start col7-end">
                      <p>
-                   
+                        My investigation revealed several key findings:
+                     </p>
+                     <p>
+                        <b>General Performance</b>: All systems performed adequately for basic skating positions and slower movements, with accuracy rates above 85% for standard poses.
+                     </p>
+                     <p>
+                        <b>Spin Detection Challenges</b>: Performance degraded significantly during spins, with accuracy dropping to 40-60% depending on the system and spin type. The Biellmann spin proved particularly problematic, with all systems failing to maintain accurate tracking during the most extreme phase of the element.
+                     </p>
+                     <p>
+                        <b>Rotation Speed Impact</b>: I observed a direct correlation between rotation speed and detection accuracy, with faster spins resulting in poorer performance across all systems.
+                     </p>
+                     <p>
+                        <b>Occlusion Issues</b>: Self-occlusion during complex poses emerged as a primary factor in detection failures, particularly when limbs crossed or were obscured by the torso.
+                     </p>
+                     <p>
+                        <b>System Comparisons:</b>
+                     </p>
+                     <p>
+                        - OpenPose demonstrated the best performance for multi-person scenes but struggled with extreme poses
+                     </p>
+                     <p>
+                        - VideoPose3D offered smoother temporal consistency but had difficulty with the unusual joint angles in figure skating
+                     </p>
+                     <p>
+                        - wrnch.ai showed promising results for standard movements but failed to maintain tracking during high-speed rotations
+                     </p>
+                     <p>
+                        My visualization framework revealed that detection failures often occurred at predictable moments, suggesting that sport-specific training data and models designed for extreme pose detection could significantly improve performance.
                     </p>
-                
+                    <img src="JPG/CV_FS/alena.gif" alt="Alena CV">
                   </div>
                <div class="margin3"></div>
                <div class="margin2"></div>
