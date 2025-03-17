@@ -89,7 +89,10 @@
                  </div>
                  <div class="col4-start col7-end">
                    <span>
-                     I implemented three leading pose detection systems:
+                     I implemented four pose detection systems:
+                  <p>
+                     - Custom Tracking Framework: A real-time detection system coded from scratch using TensorFlow and OpenCV.
+                  </p><p>
                   <p>
                      - OpenPose: A real-time multi-person detection system using Part Affinity Fields
                   </p><p>
@@ -130,7 +133,7 @@
                         <b>General Performance</b>: All systems performed adequately for basic skating positions and slower movements, with accuracy rates above 85% for standard poses.
                      </p>
                      <p>
-                        <b>Spin Detection Challenges</b>: Performance degraded significantly during spins, with accuracy dropping to 40-60% depending on the system and spin type. The Biellmann spin proved particularly problematic, with all systems failing to maintain accurate tracking during the most extreme phase of the element.
+                        <b>Spin Detection Challenges</b>: Performance degraded significantly during spins, with accuracy dropping to 40-60% depending on the system and spin type. The Biellmann spin proved particularly problematic with systems that were not the custom tracking failing to maintain accurate tracking during the most extreme phase of the element.
                      </p>
                      <p>
                         <b>Rotation Speed Impact</b>: I observed a direct correlation between rotation speed and detection accuracy, with faster spins resulting in poorer performance across all systems.
@@ -140,6 +143,9 @@
                      </p>
                      <p>
                         <b>System Comparisons:</b>
+                     </p>
+                     <p>
+                        - The custom tracking performed the best for specific figure skating poses
                      </p>
                      <p>
                         - OpenPose demonstrated the best performance for multi-person scenes but struggled with extreme poses
