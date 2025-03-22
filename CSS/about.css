@@ -692,12 +692,12 @@ a:hover {
 }
 
 ::-moz-selection {
-	background: rgba(227, 191, 181, .99);
+	background: #d1a788;
 	color: rgba(21, 32, 43, .99)
 }
 
 ::selection {
-	background: rgba(227, 191, 181, .99);
+	background: #d1a788;
 	color: rgba(21, 32, 43, .99)
 }
 
