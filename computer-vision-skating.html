@@ -63,7 +63,7 @@
                         Figure skating presents one of the most challenging environments for computer vision and pose estimation systems. The combination of high-speed movements, extreme body positions, rotational blur, and clothing variations makes it exceptionally difficult for current state-of-the-art pose detection systems to accurately track skaters' movements.
                      </p>
                      <p>
-                        My project investigated how current pose detection technologies perform when applied to figure skating, with particular attention to complex elements like spins and jumps. I found that while systems like OpenPose, VideoPose3D, and wrnch.ai perform admirably in many contexts, they struggle significantly with the elastic poses unique to figure skating, such as the Biellmann spin where skaters pull their free leg behind and over their head.
+                        My project investigated how current pose detection technologies perform when applied to figure skating, with particular attention to complex elements like spins and jumps. I found that while systems like OpenPose, VideoPose3D, and wrnch.ai perform admirably in many contexts, they struggle significantly with some poses unique to figure skating, such as the Biellmann spin where skaters pull their free leg behind and over their head.
                     </p>
                   </div>
                  <div class="margin1"></div>
@@ -94,11 +94,11 @@
                      - Custom Tracking Framework: A real-time detection system coded from scratch using TensorFlow and OpenCV.
                   </p><p>
                   <p>
-                     - OpenPose: A real-time multi-person detection system using Part Affinity Fields
+                     - OpenPose: A real-time multi-person detection system using Part Affinity Fields.
                   </p><p>
-                     - VideoPose3D: A system that estimates 3D human pose from 2D keypoint inputs
+                     - VideoPose3D: A system that estimates 3D human pose from 2D keypoint inputs.
                   </p><p>
-                     - wrnch.ai: A commercial motion capture and body tracking solution
+                     - wrnch.ai: A commercial motion capture and body tracking solution.
                   </p>
                    </span>
                </div>
@@ -145,16 +145,16 @@
                         <b>System Comparisons:</b>
                      </p>
                      <p>
-                        - The custom tracking performed the best for specific figure skating poses
+                        - The custom tracking performed the best for specific figure skating poses.
                      </p>
                      <p>
-                        - OpenPose demonstrated the best performance for multi-person scenes but struggled with extreme poses
+                        - OpenPose demonstrated the best performance for multi-person scenes but struggled with extreme poses.
                      </p>
                      <p>
-                        - VideoPose3D offered smoother temporal consistency but had difficulty with the unusual joint angles in figure skating
+                        - VideoPose3D offered smoother temporal consistency but had difficulty with the unusual joint angles in figure skating.
                      </p>
                      <p>
-                        - wrnch.ai showed promising results for standard movements but failed to maintain tracking during high-speed rotations
+                        - wrnch.ai showed promising results for standard movements but failed to maintain tracking during high-speed rotations.
                      </p>
                      <p>
                         My visualization framework revealed that detection failures often occurred at predictable moments, suggesting that sport-specific training data and models designed for extreme pose detection could significantly improve performance.
