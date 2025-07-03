@@ -8,7 +8,7 @@ body {
 	color: #1B1B1B;
 	margin: 0;
 	height: 100vh;
-	background: linear-gradient(150deg, #388ec9, #fff);
+	background: linear-gradient(150deg, #e664, #9198e5);
 	background-size: 200% 200%;
 	animation: gradientShift 60s ease infinite;
 }
