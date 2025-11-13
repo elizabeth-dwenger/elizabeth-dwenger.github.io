@@ -8,7 +8,7 @@ body {
 	color: #1B1B1B;
 	margin: 0;
 	height: 100vh;
-	background: linear-gradient(150deg, #2F8FCB, #FFFFFF); /*#fcd7d7, #9199e5);*/ 
+	background: linear-gradient(150deg, #517D47, #EBF1DD); /*#2F8FCB #fcd7d7, #9199e5);*/ 
 	background-size: 200% 200%;
 	animation: gradientShift 30s ease infinite;
 }
@@ -1523,7 +1523,7 @@ body {
 }
 
 .fmHrOg .selectedTitleItem:hover {
-	color: #7cafce;/* here */
+	color: #F2CD84;/* here */
 }
 
 
