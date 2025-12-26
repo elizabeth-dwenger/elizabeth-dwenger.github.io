@@ -1229,7 +1229,7 @@ body {
 	margin-top: -120px;
 	color: #E2E2E2;
 	/* main text color */
-	background: linear-gradient(150deg, #F0A18D, #D5A4BD, #e7be9c); /*#9BC3E0; #D5A4BD #F0A18D #D5A4BD */
+	background: linear-gradient(150deg, #9AC2E0, #115182); /*#AA90CA, #ECAAA6) #F0A18D, #D5A4BD, #e7be9c #9BC3E0; #D5A4BD #F0A18D #D5A4BD */
 	background-size: 200% 200%;
 	-webkit-background-clip: text;
 	background-clip: text;
