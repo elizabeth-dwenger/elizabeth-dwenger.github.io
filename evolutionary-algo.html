@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-   <link rel="stylesheet" href="CSS/compVision.css">
+   <link rel="stylesheet" href="CSS/eAlgo.css">
    <link rel="shortcut icon" type="image/x-icon" href="favicon2.png" />
    <meta name="theme-color" content="#00AFA0" />
    <meta itemProp="name" content="Elizabeth Dwenger" />
@@ -35,88 +35,141 @@
             </div>
          </div>
          <section class="gTdLLN masthead-wrapper">
-            <h1 class="react-reveal">Simple Computer Vision</h1>
+            <h1 class="react-reveal">EA Selects NN Architecture</h1>
             <div class="react-reveal left">
                <div class="masthead-detail-item">
                   <h7>Timeframe</h7>
-                  <span class="masthead-detail-content">Nov 2022</span>
+                  <span class="masthead-detail-content">May 2022</span>
                </div>
                <div class="masthead-detail-item">
                   <h7>Zip</h7>
-                  <span class="masthead-detail-content"><a href="JPG/CV/CV.zip" target="_blank">Download project and
-                        report </a></span>
+                  <span class="masthead-detail-content"><a href="JPG/EvoAlgo/evolutionaryAlgo.zip"
+                        target="_blank">Download Zip</a> </span>
                </div>
                <div class="masthead-detail-item">
                   <h7>tools</h7>
-                  <span class="masthead-detail-content">OpenCV</span><span class="masthead-detail-content">Computer
-                     Vision</span>
+                  <span class="masthead-detail-content">Jupyter Notebook</span><span
+                     class="masthead-detail-content">Python</span><span
+                     class="masthead-detail-content">PyTorch</span><span class="masthead-detail-content">Scikit-Learn
+                     Digits dataset</span>
                </div>
             </div>
             <div class="react-reveal heroImg" style="background-size:auto 100%;"></div>
          </section>
-         <section id="selectedSection" class="frvHhu">
+         <section id="selectedSection" class="bodySectionstyle__BodySectionWrapper-b7u0yd-0 frvHhu">
             <div class="wrap">
                <div class="col2-start col3-end"><span class="sectionTitle">00. Overview</span></div>
                <div class="col3-start col7-end">
-                  <h3>Simple Computer Vision/AR Project.</h3>
+                  <h3>Implementing an Evolutionary Algorithm for Neural Architecture Search.</h3>
                </div>
                <div class="col3-start col7-end">
                   <p>
-                     This application leverages edge detection to create obstacles based on contours captured by the
-                     camera. Users can drop objects, draw lines, and interact with a dynamic digital environment that
-                     reacts to the physical world, exemplifying the principles of augmented reality. By exploring the
-                     interplay between physical and digital elements, this project serves as a foundational example of
-                     augmented reality in action.
+                     Within the field of computational intelligence, evolutionary algorithms and neural networks are two
+                     frameworks that aim to advance the goal of optimization. Evolutionary algorithms emulate structures
+                     found in nature, while neural networks approximate the structure of the human brain to identify
+                     patterns. This project combines these frameworks by using an evolutionary algorithm to select the
+                     architecture of a neural network. The resulting architecture is compared against two other
+                     algorithms: a fully connected neural network and a convolutional neural network. The Scikit-Learn
+                     Digits dataset is used to train and evaluate the models, with the goal of identifying the
+                     best-performing algorithm on the test set.
                   </p>
                </div>
+               <div class="margin1"></div>
+               <div class="col3-start col4-end">
+                  <h5>Problem Statement</h5>
+               </div>
+               <div class="col4-start col7-end">
+                  <span>
+                     This project focuses on three subgoals:
+                     <br><br>
+                     1. Implementing a convolutional neural network.
+                     <br>2. Implementing an evolutionary algorithm for neural architecture search.
+                     <br>3. Evaluating the performance of the resulting algorithm.
+                  </span>
+               </div>
                <div class="margin4"></div>
-               <div class="col2-start col3-end"><span class="sectionTitle">01. Implementation Details
-                  </span></div>
+               <div class="col2-start col3-end"><span class="sectionTitle">01. Methodology</span></div>
                <div class="col3-start col7-end">
-                  <h3>OpenCV.</h3>
+                  <h3>Convolutional Neural Network.</h3>
                </div>
+               <div class="col3-start col7-end">
+                  <p>
+                     A convolutional neural network (CNN) was implemented in PyTorch with the following general
+                     architecture:
+                     <br> 1. A 2D convolutional layer followed by an activation function and pooling.
+                     <br>2. Flattening of the output.
+                     <br>3. A linear layer with another activation function.
+                     <br>4. A final linear layer followed by a log softmax function.
+                  </p>
+               </div>
+               <div class="margin1"></div>
                <div class="col3-start col4-end">
-                  <h5>Contour Detection:</h5>
+                  <h5>Hyperparameter Choices</h5>
                </div>
                <div class="col4-start col7-end">
                   <span>
-                     Utilizes ofxCvContourFinder for edge detection by analyzing pixel contrast and applying foreground
-                     detection to reduce computation.
-                     <br>User-drawn edges are detected as contours, interacting dynamically with objects.
+                     The CNN architecture allows the following hyperparameter configurations:
+                     <br><br>
+                     <b>2D Convolutional Layer:</b>
+                     <br>Filters or Kernel: (padding = 1, stride = 1) or (padding = 2, stride = 1)
+                     <br><b>Activation Function:</b><br> ReLU, sigmoid, tanh, softplus, or ELU
+                     <br><b>Pooling:</b><br> Filter size or Type: Max pooling or average pooling
+                     <br><b>Linear Layer:</b><br> Neurons ranging from 10 to 100 in multiples of 10
                   </span>
                </div>
                <div class="margin1"></div>
                <div class="col3-start col4-end">
-                  <h5>Physics Simulation:</h5>
+                  <h5>Evolutionary Algorithm</h5>
                </div>
                <div class="col4-start col7-end">
                   <span>
-                     Built using ofxBox2d, a wrapper for the Box2D physics engine.
-                     <br>Customized object parameters, such as reduced gravity, provide smoother, more refined movement.
+                     The evolutionary algorithm performs neural architecture search with the following components:
+                     <br><br>
+                     <b>Crossover Operator:</b>
+                     <br>A one-point crossover recombines parts of parent configurations.
+                     <br><b>Survival Selection:</b><br> Elitist selection copies the best-performing individuals to the
+                     next generation.
+                     <br><b>Mutation Operators:</b><br> Bit flip for binary values (probability); Random integer
+                     generation for other values
                   </span>
                </div>
+               <div class="col3-start col4-end">
+                  <h5>Models</h5>
+               </div>
+               <div class="col4-start col7-end">
+                  <span>
+                     Three models were implemented and trained on the Scikit-Learn Digits dataset:
+                     <br><br>
+                     1. A fully connected neural network (FCNN).
+                     <br>2. A convolutional neural network (CNN).
+                     <br>3. A CNN optimized through the evolutionary algorithm (EA-CNN).
+                  </span>
+               </div>
+               <div class="col2-start col3-end"><span class="sectionTitle">02. Results</span></div>
+               <div class="col3-start col7-end">
+                  <h3>Results &amp; Discussion.</h3>
+               </div>
+               <div class="col3-start col7-end">
+                  <p>
+                     The EA-CNN achieved a best fitness score of 0.029 after 25 generations.<br>
+                     This project explored the integration of evolutionary algorithms with neural networks for
+                     architecture optimization. While the EA-CNN demonstrated efficient initial optimization, its
+                     performance lagged behind standard CNNs and FCNNs. Future work could address computational
+                     constraints by increasing generations and epochs or incorporating parallel processing to explore
+                     more configurations.
+                  </p>
+               </div>
                <div class="margin1"></div>
-               <div class="col2-start col3-end"><span class="sectionTitle">02. Report</span></div>
+               <div class="margin4"></div>
+               <div class="col2-start col3-end"><span class="sectionTitle">03. Report</span></div>
                <div class="col3-start col7-end">
                   <h3>Report PDF</h3>
                </div>
                <div class="margin1"></div>
                <div class="imgContainer col3-start col8-end">
                   <div class="imageloader imageloader-loading">
-                     <iframe src="JPG/CV/Archive/Mini Project.pdf#toolbar=0" class="imageloader imageloader-loading"
+                     <iframe src="JPG/EvoAlgo/EA_NN.pdf#toolbar=0" class="imageloader imageloader-loading"
                         style="height:35em; width: 100%;"></iframe>
-                  </div>
-               </div>
-               <div class="margin1"></div>
-               <div class="col2-start col3-end"><span class="sectionTitle">03. Video</span></div>
-               <div class="col3-start col7-end">
-                  <h3>Video</h3>
-               </div>
-               <div class="margin1"></div>
-               <div class="imgContainer col3-start col8-end">
-                  <div class="imageloader imageloader-loading">
-                     <iframe src="https://www.youtube.com/embed/yX6BN34gr2s" class="runcon" ,
-                        style="height: 9cm; width: 100%;"></iframe>
                   </div>
                </div>
                <div class="margin3"></div>
@@ -137,17 +190,17 @@
             <div class="wrap hover-trigger">
                <div class="left col2-start col5-end">
                   <div class="react-reveal">
-                     <a href="collectiveBehavior.html" display="inline-block" class="gqCdIK">
+                     <a href="data-visualization.html" display="inline-block" class="Link__LinkWrapper-s8z6ts-0 gqCdIK">
                         <span class="mono">Previous</span>
-                        <h3 class="react-reveal">Agent Modeling.</h3>
+                        <h3 class="react-reveal">Data Visualization in Python.</h3>
                      </a>
                   </div>
                </div>
                <div class="right col5-start col8-end">
                   <div class="react-reveal">
-                     <a href="techDataViz/dataIndex.html" display="inline-block" class="gqCdIK">
+                     <a href="collectiveBehavior.html" display="inline-block" class="Link__LinkWrapper-s8z6ts-0 gqCdIK">
                         <span class="mono">next up</span>
-                        <h3 class="react-reveal">Gender Pay Gap in Tech Data Visualization</h3>
+                        <h3 class="react-reveal">Modeling Collective Behavior.</h3>
                      </a>
                   </div>
                </div>
