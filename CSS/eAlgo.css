@@ -820,11 +820,11 @@ button.modalCloseBtn {
 
 /* sc-component-id: sc-global-3662572628 */
 ::-moz-selection {
-	background: rgba(227, 191, 181, 0.99);
+	background: #a8c5e3;
 }
 
 ::selection {
-	background: rgba(227, 191, 181, 0.99);
+	background: #a8c5e3;
 }
 
 body {
@@ -1314,7 +1314,7 @@ video {
 }
 
 .boGVeN:hover svg {
-	fill: #E3BFB5;
+	fill: #a8c5e3;
 }
 
 @media (max-width:1080px) {
@@ -1490,7 +1490,7 @@ video {
 }
 
 .fOgPcX a:hover {
-	color: #E3BFB5;
+	color: #a8c5e3;
 	-webkit-transition: 0.16s ease-out;
 	transition: 0.16s ease-out;
 }

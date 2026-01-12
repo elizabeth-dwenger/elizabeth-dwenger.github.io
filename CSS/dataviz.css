@@ -1082,12 +1082,12 @@ button.modalCloseBtn.alt:hover {
 
 /* sc-component-id: sc-global-1166046605 */
 ::-moz-selection {
-	background: rgba(227, 191, 181, 0.99);
+	background: #a8c5e3;
 	color: rgba(21, 32, 43, 0.99);
 }
 
 ::selection {
-	background: rgba(227, 191, 181, 0.99);
+	background: #a8c5e3;
 	color: rgba(21, 32, 43, 0.99);
 }
 
@@ -1413,11 +1413,11 @@ body {
 }
 
 .dpkkqZ .scrolldown:hover {
-	color: #E3BFB5;
+	color: #a8c5e3;
 }
 
 .dpkkqZ .scrolldown:hover svg {
-	fill: #E3BFB5 !important;
+	fill: #a8c5e3 !important;
 }
 
 .dpkkqZ .arrow {
@@ -1499,7 +1499,7 @@ body {
 }
 
 .fmHrOg .selectedTitleItem:hover {
-	color: #E3BFB5;
+	color: #a8c5e3;
 }
 
 .fmHrOg .cards {
@@ -1683,7 +1683,7 @@ body {
 }
 
 .fmHrOg .moreTitleItem:hover {
-	color: #E3BFB5;
+	color: #a8c5e3;
 }
 
 .fmHrOg .moreTitleItem .moreItemDescription {
